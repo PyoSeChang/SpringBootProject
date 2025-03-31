@@ -12,7 +12,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 @SpringBootTest
 @Log4j2
-public class SQLSessionTest {
+public class
+SQLSessionTest {
     @Autowired
     private DataSource dataSource;
     @Autowired
