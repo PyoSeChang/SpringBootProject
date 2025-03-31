@@ -13,4 +13,13 @@ public interface BoardMapper {
 
     // 게시글 등록
     void insertBoard(BoardDTO dto);
+
+    // 게시글 조회
+    BoardDTO selectBoardByNum(int num);
+
+    // 게시글 업데이트
+    void updateBoard(BoardDTO dto);
+
+    // 게시글 삭제
+    void deleteBoard(int num);
 }

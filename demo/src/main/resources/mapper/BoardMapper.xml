@@ -16,4 +16,23 @@
         VALUES (#{title}, #{author}, #{content})
     </insert>
 
+    <!--    -->
+    <select id="selectBoardByNum" resultType="BoardDTO">
+        SELECT *
+        FROM tbl_board
+        WHERE BNO=#{bno}
+    </select>
+    <!--    -->
+    <update id="updateBoard">
+        UPDATE tbl_board
+        SET title=#{title}, author=#{author}, content=#{content}
+        WHERE bno=#{bno}
+    </update>
+
+    <!--    -->
+    <delete id="deleteBoard">
+        DELETE
+        FROM tbl_board
+        WHERE BNO=#{bno}
+    </delete>
 </mapper>
