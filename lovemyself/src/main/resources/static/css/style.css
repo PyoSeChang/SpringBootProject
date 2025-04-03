@@ -1,0 +1,59 @@
+:root {
+  --neon-yellow: #fff95b;
+  --neon-pink:   #ff66c4;
+  --neon-green:  #39ff14;
+  --neon-blue:   #4dffff;
+  --neon-red:    #ff4e4e;
+  --neon-orange: #ffae42;
+}
+
+body {
+  background-color: #000000;
+  background-image: url("https://www.transparenttextures.com/patterns/black-paper.png");
+  color: white;
+  font-family: 'BookkMyungjo-Bd', serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  text-align: center;
+}
+
+.nav-bar ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.nav-bar a {
+  text-decoration: none;
+  font-weight: bold;
+  color: var(--neon-blue);
+}
+
+footer {
+  text-align: center;
+  padding: 2rem;
+  font-size: 0.9rem;
+  color: white;
+  opacity: 0.8;
+}
+
+h1, h2 {
+  font-family: 'BookkMyungjo-Bd', serif;
+}
+
+.user-entry {
+  font-family: 'Shilla_CultureB-Bold', cursive;
+  font-size: 1.1rem;
+  padding: 2rem;
+}
+
+.highlight-yellow { color: var(--neon-yellow); }
+.alert { color: var(--neon-red); font-weight: bold; }
+.good { color: var(--neon-green); }

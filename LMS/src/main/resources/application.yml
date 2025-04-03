@@ -4,9 +4,11 @@ server:
 
 spring:
   thymeleaf:
-    prefix: classpath:/templates/
-    suffix: .html
-    cache: false
+      cache: false
+      enabled: true
+      mode: HTML
+      prefix: classpath:/templates/
+      suffix: .html
 
   datasource:
     url: jdbc:mysql://localhost:3306/lms?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
@@ -17,3 +19,9 @@ spring:
 mybatis:
   mapper-locations: classpath:/mapper/**/*.xml
   type-aliases-package: com.psc.lms.dto
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: beans
