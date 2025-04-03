@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-<head>
+
     <meta charset="UTF-8">
     <title>LoveMySelf 🌙</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
-</head>
-<body>
+
 <header>
     <h1>LoveMySelf 🌙</h1>
     <nav class="nav-bar">
@@ -18,11 +17,11 @@
         </ul>
     </nav>
 </header>
-<main th:fragment="content">
+<main layout:fragment="content">
     <!-- 자식 템플릿이 이 영역을 채웁니다 -->
 </main>
 <footer>
     <p>© 2025 LoveMySelf</p>
 </footer>
-</body>
+
 </html>

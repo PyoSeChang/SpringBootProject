@@ -1,59 +1,117 @@
 :root {
+  /* 네온 컬러 (형광 느낌) */
   --neon-yellow: #fff95b;
   --neon-pink:   #ff66c4;
   --neon-green:  #39ff14;
   --neon-blue:   #4dffff;
   --neon-red:    #ff4e4e;
   --neon-orange: #ffae42;
+
+  /* 일반 강조 컬러 (톤 다운된 느낌) */
+  --soft-yellow: #f0e68c;
+  --soft-pink:   #ffb6c1;
+  --soft-green:  #90ee90;
+  --soft-blue:   #add8e6;
+  --soft-red:    #fa8072;
+  --soft-orange: #f4a460;
 }
 
+/* ✨ 네온 강조용 클래스 */
+.text-neon-yellow { color: var(--neon-yellow); }
+.text-neon-pink   { color: var(--neon-pink); }
+.text-neon-green  { color: var(--neon-green); }
+.text-neon-blue   { color: var(--neon-blue); }
+.text-neon-red    { color: var(--neon-red); }
+.text-neon-orange { color: var(--neon-orange); }
+
+/* 🌟 일반 강조용 클래스 */
+.text-yellow { color: var(--soft-yellow); }
+.text-pink   { color: var(--soft-pink); }
+.text-green  { color: var(--soft-green); }
+.text-blue   { color: var(--soft-blue); }
+.text-red    { color: var(--soft-red); }
+.text-orange { color: var(--soft-orange); }
+
+/* 1. UI용 폰트 (BookkMyungjo-Bd) */
+@font-face {
+  font-family: 'BookkMyungjoBd';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/BookkMyungjo-Bd.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* 2. 사용자 손글씨 폰트 (Shilla_CultureB-Bold) */
+@font-face {
+  font-family: 'ShillaCultureBold';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/Shilla_CultureB-Bold.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* 3. 전체 UI 기본 스타일 */
 body {
+  font-family: 'BookkMyungjoBd', serif;
   background-color: #000000;
   background-image: url("https://www.transparenttextures.com/patterns/black-paper.png");
   color: white;
-  font-family: 'BookkMyungjo-Bd', serif;
   margin: 0;
   padding: 0;
 }
 
-header {
-  padding: 1rem;
-  background-color: rgba(255, 255, 255, 0.05);
-  text-align: center;
+/* 4. 네비게이션 바 */
+/* 1. 네비게이션 배경 (차콜 블럭) */
+.nav-bar {
+  background-color: #1c1c1c; /* 차콜 느낌 */
+  padding: 1rem 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  border-bottom: 1px solid #333;
 }
 
+/* 2. 네비게이션 목록 */
 .nav-bar ul {
   list-style: none;
-  padding: 0;
   display: flex;
-  justify-content: center;
   gap: 2rem;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
 }
 
+/* 3. 네비게이션 링크 */
 .nav-bar a {
   text-decoration: none;
+  color: var(--neon-yellow); /* 노란 강조색 */
   font-weight: bold;
-  color: var(--neon-blue);
+  font-size: 1.05rem;
+  transition: color 0.3s;
 }
 
+.nav-bar a:hover {
+  color: var(--neon-orange); /* 호버 시 살짝 변화 */
+  text-shadow: 0 0 5px var(--neon-yellow);
+}
+
+/* 5. 사용자 콘텐츠 영역 (손글씨 적용) */
+.user-entry {
+  font-family: 'ShillaCultureBold', cursive;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #fff;
+  padding: 2rem;
+}
+
+/* 6. 푸터 */
 footer {
   text-align: center;
   padding: 2rem;
   font-size: 0.9rem;
-  color: white;
-  opacity: 0.8;
 }
 
-h1, h2 {
-  font-family: 'BookkMyungjo-Bd', serif;
+/* 7. h1 중앙 정렬 */
+h1 {
+  text-align: center;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
 }
 
-.user-entry {
-  font-family: 'Shilla_CultureB-Bold', cursive;
-  font-size: 1.1rem;
-  padding: 2rem;
-}
-
-.highlight-yellow { color: var(--neon-yellow); }
-.alert { color: var(--neon-red); font-weight: bold; }
-.good { color: var(--neon-green); }

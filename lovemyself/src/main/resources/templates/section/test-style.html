@@ -2,22 +2,25 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/layout}">
-<head>
-    <meta charset="UTF-8">
-    <title>Style Test</title>
-</head>
-<body>
-<div layout:fragment="content">
-    <h2>🎨 Style 테스트 페이지</h2>
-    <div class="user-entry">
-        오늘 나는 나 자신에게 질문을 던져봤다.<br>
-        “나는 지금 진짜로 원하는 걸 향해 가고 있는가?”<br>
-        느린 걸음이어도 괜찮다. 중요한 건 방향이다.
-    </div>
 
-    <p class="highlight-yellow">노란 형광 강조 텍스트</p>
-    <p class="alert">빨간색 경고 텍스트</p>
-    <p class="good">초록색 긍정 텍스트</p>
+<div layout:fragment="content">
+    <div class="user-entry">
+        <p class="text-neon-yellow">네온 노란색 텍스트 (강조)</p>
+        <p class="text-neon-red">네온 빨간색 텍스트 (경고)</p>
+        <p class="text-neon-green">네온 초록색 텍스트 (긍정)</p>
+        <p class="text-neon-pink">네온 핑크색 텍스트 (포인트)</p>
+        <p class="text-neon-blue">네온 파랑색 텍스트 (중립)</p>
+        <p class="text-neon-orange">네온 주황색 텍스트 (에너지)</p>
+
+        <hr>
+
+        <p class="text-yellow">일반 노란 텍스트</p>
+        <p class="text-red">일반 빨간 텍스트</p>
+        <p class="text-green">일반 초록 텍스트</p>
+        <p class="text-pink">일반 핑크 텍스트</p>
+        <p class="text-blue">일반 파랑 텍스트</p>
+        <p class="text-orange">일반 주황 텍스트</p>
+    </div>
 </div>
-</body>
+
 </html>
