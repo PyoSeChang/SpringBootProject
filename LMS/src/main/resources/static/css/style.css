@@ -1,0 +1,79 @@
+@font-face {
+    font-family: 'ShillaCulture';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/Shilla_CultureB-Bold.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'BookkMyungjo-Bd';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/BookkMyungjo-Bd.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #000000;
+    background-image: url("https://www.transparenttextures.com/patterns/black-paper.png");
+    background-repeat: repeat;
+    color: #ffffff;
+    font-family: 'BookkMyungjo-Bd', serif;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+h1, h2, h3, nav, footer {
+    font-family: 'BookkMyungjo-Bd', serif;
+}
+
+.user-entry {
+    font-family: 'ShillaCulture', cursive;
+    font-size: 20px;
+    line-height: 1.8;
+    white-space: pre-wrap;
+}
+
+.nav-bar {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0.8rem 1.5rem;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-bar ul {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-bar a {
+    font-family: 'BookkMyungjo-Bd';
+    color: #ffffff;
+    font-size: 18px;
+    text-decoration: none;
+    padding: 0.3rem 0.6rem;
+    transition: all 0.2s ease-in-out;
+}
+
+.nav-bar a:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+}
+:root {
+    --neon-yellow: #fff95b;
+    --neon-pink:   #ff66c4;
+    --neon-green:  #39ff14;
+    --neon-blue:   #4dffff;
+    --neon-red:    #ff4e4e;
+    --neon-orange: #ffae42;
+
+    /* 선택적으로 텍스트 강조용 */
+    --text-strong: var(--neon-yellow);
+    --text-alert:  var(--neon-red);
+    --text-good:   var(--neon-green);
+}
