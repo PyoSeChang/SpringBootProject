@@ -65,6 +65,76 @@
         <div id="editor"></div>
         <input type="hidden" id="content" name="content" />
 
+        <div class="connection-box">
+            <!-- 1. View (nullable) -->
+            <div>
+                <label for="view">관계 View (선택)</label>
+                <input type="text" id="view" name="connections[0].view" placeholder="이 관계의 의미나 맥락">
+            </div>
+
+            <!-- 2. 연결 대상 객체 ID 및 Category -->
+            <div>
+                <label for="toId">연결 대상 ID</label>
+                <input type="text" id="toId" name="connections[0].toId" placeholder="예: 42">
+            </div>
+
+            <div>
+                <label for="toCategory">연결 대상 Category</label>
+                <select id="toCategory" name="connections[0].toCategory">
+                    <option value="">-- 선택하세요 --</option>
+                    <option value="REVIEW">REVIEW</option>
+                    <option value="EVENT">EVENT</option>
+                    <option value="PROJECT">PROJECT</option>
+                    <option value="AWARENESS">AWARENESS</option>
+                    <option value="INSPIRATION">INSPIRATION</option>
+                    <option value="INSIGHT">INSIGHT</option>
+                    <option value="FRAMEWORK">FRAMEWORK</option>
+                    <option value="STUDY">STUDY</option>
+                </select>
+            </div>
+
+            <!-- 3. 연결 타입 입력 or 선택 -->
+            <div>
+                <label for="connectionType">연결 타입</label>
+                <input type="text" id="connectionType" name="connections[0].connectionType" list="connectionTypeList" placeholder="입력 또는 선택">
+                <datalist id="connectionTypeList">
+                    <option value="유사">Similar</option>
+                    <option value="원인">Cause</option>
+                    <option value="결과">Effect</option>
+                    <option value="대조">Contrast</option>
+                    <option value="구체화">Elaboration</option>
+                </datalist>
+            </div>
+
+            <!-- 4. usableCategory 선택 (nullable) -->
+            <div>
+                <label for="usableCategory">사용 가능한 카테고리 (옵션)</label>
+                <select id="usableCategory" name="connections[0].usableCategory">
+                    <option value="">-- 선택 안함 (기본값 null) --</option>
+                    <option value="REVIEW">REVIEW</option>
+                    <option value="EVENT">EVENT</option>
+                    <option value="PROJECT">PROJECT</option>
+                    <option value="AWARENESS">AWARENESS</option>
+                    <option value="INSPIRATION">INSPIRATION</option>
+                    <option value="INSIGHT">INSIGHT</option>
+                    <option value="FRAMEWORK">FRAMEWORK</option>
+                    <option value="STUDY">STUDY</option>
+                </select>
+            </div>
+
+            <!-- 5. is_directional (기본값 false) -->
+            <div>
+                <input type="checkbox" id="isDirectional" name="connections[0].directional" value="true">
+                <label for="isDirectional">방향성 있는 관계</label>
+            </div>
+
+            <!-- 6. 설명 -->
+            <div>
+                <label for="description">설명</label>
+                <textarea id="description" name="connections[0].description" rows="2" placeholder="이 관계에 대한 설명"></textarea>
+            </div>
+        </div>
+
         <!-- 제출 버튼 -->
         <button type="submit">저장하기</button>
     </form>

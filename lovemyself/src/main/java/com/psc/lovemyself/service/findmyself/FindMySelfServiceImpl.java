@@ -26,44 +26,34 @@ public class FindMySelfServiceImpl implements FindMySelfService {
     @Override
     public void saveCognition(CognitionDTO dto) {
         if (dto.getCognitionType() == CognitionType.EXPERIENCE) {
-            Experience experience = mapToExperience(dto);
+            Experience experience = dto.toExperience();
             experienceRepository.save(experience);
+
             if (dto.getConnections() != null) {
                 for (Connection connection : dto.getConnections()) {
                     connection.setFromId(experience.getId());
                     connection.setFromCategory(experience.getCategory());
                     connectionRepository.save(connection);
                 }
+            }
+
         } else if (dto.getCognitionType() == CognitionType.IDEA) {
-            Idea idea = mapToIdea(dto);
+            Idea idea = dto.toIdea();
             ideaRepository.save(idea);
+
             if (dto.getConnections() != null) {
                 for (Connection connection : dto.getConnections()) {
                     connection.setFromId(idea.getId());
                     connection.setFromCategory(idea.getCategory());
                     connectionRepository.save(connection);
                 }
+            }
+
         } else {
-            throw new IllegalArgumentException("지원하지 않는 CognitionType입니다.");
+            throw new IllegalArgumentException("지원하지 않는 CognitionType입니다: " + dto.getCognitionType());
         }
     }
 
-    private Experience mapToExperience(CognitionDTO dto) {
-        return switch (dto.getCategory()) {
-            case REVIEW -> new Review(dto);
-            case EVENT -> new Event(dto);
-            case AWARENESS -> new Awareness(dto);
-            case PROJECT -> new Project(dto);
-            default -> throw new IllegalArgumentException("경험(Experience)에 해당하지 않는 Category입니다.");
-        };
-    }
 
-    private Idea mapToIdea(CognitionDTO dto) {
-        return switch (dto.getCategory()) {
-            case INSPIRATION -> new Inspiration(dto);
-            case INSIGHT -> new Insight(dto);
-            case FRAMEWORK -> new Framework(dto);
-            default -> throw new IllegalArgumentException("아이디어(Idea)에 해당하지 않는 Category입니다.");
-        };
-    }
+
 }
