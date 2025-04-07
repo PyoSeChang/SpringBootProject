@@ -10,13 +10,13 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Connection {
+public class ConnectionView {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // 출발 Cognition
+    // 이 관점이 시작되는 Cognition 객체의 정보
     @Column(nullable = false)
     private Long fromId;
 
@@ -24,19 +24,10 @@ public class Connection {
     @Column(nullable = false)
     private Category fromCategory;
 
-    // 도착 Cognition
-    @Column(nullable = false)
-    private Long toId;
+    // 사용자 정의 관점 이름
+    @Column(nullable = false, length = 100)
+    private String name;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private Category toCategory;
-
-    // 연결의 의미
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private ConnectionType connectionType;
-
-    // 관점 (연결 그룹)
-    @ManyToOne(fetch = FetchType.LAZY)
-    private ConnectionView view;
+    // 선택: 관점 설명
+    private String description;
 }

@@ -7,7 +7,6 @@ public enum Category {
     PROJECT,
     INSPIRATION,
     INSIGHT,
-    SCHEMA,
     FRAMEWORK,
     STUDY
 }

@@ -40,10 +40,10 @@
   font-style: normal;
 }
 
-/* 2. 사용자 손글씨 폰트 (Shilla_CultureB-Bold) */
+/* 2. 사용자 손글씨 폰트 (Shilla_Culture Regular 변환 파일) */
 @font-face {
-  font-family: 'ShillaCultureBold';
-  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/Shilla_CultureB-Bold.woff2') format('woff2');
+  font-family: 'ShillaCulture';
+  src: url('/fonts/Shilla_Culture-Regular.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
 }
@@ -59,15 +59,13 @@ body {
 }
 
 /* 4. 네비게이션 바 */
-/* 1. 네비게이션 배경 (차콜 블럭) */
 .nav-bar {
-  background-color: #1c1c1c; /* 차콜 느낌 */
+  background-color: #1c1c1c;
   padding: 1rem 0;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
   border-bottom: 1px solid #333;
 }
 
-/* 2. 네비게이션 목록 */
 .nav-bar ul {
   list-style: none;
   display: flex;
@@ -78,27 +76,27 @@ body {
   padding: 0;
 }
 
-/* 3. 네비게이션 링크 */
 .nav-bar a {
   text-decoration: none;
-  color: var(--neon-yellow); /* 노란 강조색 */
+  color: var(--neon-yellow);
   font-weight: bold;
   font-size: 1.05rem;
   transition: color 0.3s;
 }
 
 .nav-bar a:hover {
-  color: var(--neon-orange); /* 호버 시 살짝 변화 */
+  color: var(--neon-orange);
   text-shadow: 0 0 5px var(--neon-yellow);
 }
 
-/* 5. 사용자 콘텐츠 영역 (손글씨 적용) */
+/* 5. 사용자 콘텐츠 영역 */
 .user-entry {
-  font-family: 'ShillaCultureBold', cursive;
+  font-family: 'ShillaCulture', cursive;
   font-size: 1.1rem;
   line-height: 1.6;
   color: #fff;
   padding: 2rem;
+  font-weight: normal;
 }
 
 /* 6. 푸터 */
@@ -114,4 +112,3 @@ h1 {
   margin-top: 1.5rem;
   margin-bottom: 0.5rem;
 }
-

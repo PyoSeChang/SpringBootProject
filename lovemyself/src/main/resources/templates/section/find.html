@@ -3,12 +3,141 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/layout}">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toast UI Editor with Color Syntax Plugin</title>
 
-<div layout:fragment="content">
-    <h2>🔍 Find Myself</h2>
-    <div class="user-entry">
-        오늘의 나를 조용히 들여다보는 시간.<br>지나간 하루를 곱씹으며, 나는 무엇을 느꼈을까?
-    </div>
-</div>
+    <th:block layout:fragment="style">
+        <link rel="stylesheet" type="text/css" href="/css/find.css">
+    </th:block>
 
+    <!-- Toast UI Editor & Plugin CSS -->
+    <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
+    <link rel="stylesheet" href="https://uicdn.toast.com/tui-color-picker/latest/tui-color-picker.min.css" />
+    <link rel="stylesheet" href="https://uicdn.toast.com/editor-plugin-color-syntax/latest/toastui-editor-plugin-color-syntax.min.css" />
+</head>
+
+<body>
+<th:block layout:fragment="content">
+
+    <form th:action="@{/find/write}" method="post">
+        <!-- 제목 -->
+        <div class="form-group">
+            <label for="title">제목</label>
+            <input type="text" id="title" name="title" placeholder="제목을 입력하세요" required />
+        </div>
+
+        <!-- 카테고리 -->
+        <div class="form-group">
+            <label for="category">카테고리 선택</label>
+            <select id="category" name="category">
+                <optgroup label="Experience">
+                    <option value="REVIEW">Review</option>
+                    <option value="EVENT">Event</option>
+                    <option value="AWARENESS">Awareness</option>
+                    <option value="PROJECT">Project</option>
+                </optgroup>
+                <optgroup label="Idea">
+                    <option value="INSPIRATION">Inspiration</option>
+                    <option value="INSIGHT">Insight</option>
+                    <option value="FRAMEWORK">Framework</option>
+                    <option value="STUDY">Study</option>
+                </optgroup>
+            </select>
+        </div>
+
+        <!-- CognitionType 자동 설정 -->
+        <input type="hidden" id="cognitionType" name="cognitionType" value="EXPERIENCE" />
+
+        <!-- 날짜 -->
+        <div class="form-group">
+            <label for="startDate">시작 날짜</label>
+            <input type="date" id="startDate" name="startDate" required />
+        </div>
+
+        <div class="form-group">
+            <label for="endDate">끝 날짜</label>
+            <input type="date" id="endDate" name="endDate" required />
+        </div>
+
+        <!-- Toast UI Editor -->
+        <div id="editor"></div>
+        <input type="hidden" id="content" name="content" />
+
+        <!-- 제출 버튼 -->
+        <button type="submit">저장하기</button>
+    </form>
+
+    <th:block layout:fragment="script">
+        <!-- JS 로딩 -->
+        <script src="https://uicdn.toast.com/tui-color-picker/latest/tui-color-picker.min.js"></script>
+        <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+        <script src="https://uicdn.toast.com/editor-plugin-color-syntax/3.0.0/toastui-editor-plugin-color-syntax.min.js"></script>
+
+        <script th:inline="none">
+            let editor; // 전역 선언
+
+            window.addEventListener('DOMContentLoaded', () => {
+                const { Editor } = toastui;
+                const { colorSyntax } = Editor.plugin;
+
+                const colorOptions = {
+                    preset: ['#ffffff', '#fff95b', '#ff66c4', '#ff4e4e',
+                        '#ffae42', '#39ff14', '#4dffff']
+                };
+
+                // 날짜 초기값 설정
+                const today = new Date().toISOString().split('T')[0];
+                document.getElementById('startDate').value = today;
+                document.getElementById('endDate').value = today;
+
+                // Editor 생성
+                editor = new Editor({
+                    el: document.querySelector('#editor'),
+                    height: '500px',
+                    initialEditType: 'markdown',
+                    previewStyle: 'vertical',
+                    placeholder: '자기 생각을 색으로 표현해보세요!',
+                    plugins: [[colorSyntax, colorOptions]]
+                });
+
+                // 스타일 주입 (디자인용)
+                const applyEditorStyle = () => {
+                    const contentArea = document.querySelector('.toastui-editor-contents');
+                    if (contentArea) {
+                        contentArea.style.color = '#ffffff';
+                        contentArea.style.fontFamily = 'Shilla_Culture, sans-serif';
+                        const all = contentArea.querySelectorAll('*');
+                        all.forEach(el => {
+                            el.style.color = '#ffffff';
+                            el.style.fontFamily = 'Shilla_Culture, sans-serif';
+                        });
+                    }
+                };
+                let attempts = 0;
+                const interval = setInterval(() => {
+                    applyEditorStyle();
+                    if (++attempts > 10) clearInterval(interval);
+                }, 500);
+            });
+
+            // submit 시 내용 동기화
+            const form = document.querySelector('form');
+            form.addEventListener('submit', function (e) {
+                // Editor 내용 → content input
+                const contentInput = document.querySelector('#content');
+                contentInput.value = editor.getMarkdown();
+
+                // category → cognitionType 자동 설정
+                const category = document.getElementById("category").value;
+                const typeInput = document.getElementById("cognitionType");
+                const ideaSet = new Set(["INSPIRATION", "INSIGHT", "FRAMEWORK", "STUDY"]);
+                typeInput.value = ideaSet.has(category) ? "IDEA" : "EXPERIENCE";
+            });
+        </script>
+    </th:block>
+</th:block>
+
+</body>
 </html>

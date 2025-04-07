@@ -1,8 +1,10 @@
 package com.psc.lovemyself.domain.findmyself.experience;
 
+import com.psc.lovemyself.dto.findmyself.CognitionDTO;
 import jakarta.persistence.*;
 import lombok.*;
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import com.psc.lovemyself.domain.findmyself.enums.Category;
 
@@ -24,8 +26,8 @@ public abstract class Experience {
     private String title;
     private String content;
 
-    private Timestamp startDate;
-    private Timestamp endDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
 
     private Timestamp createdAt;
 
@@ -33,7 +35,14 @@ public abstract class Experience {
     protected void onCreate() {
         Timestamp now = Timestamp.valueOf(LocalDateTime.now());
         this.createdAt = now;
-        if (this.startDate == null) this.startDate = now;
-        if (this.endDate == null) this.endDate = now;
+    }
+
+
+    public Experience(CognitionDTO dto) {
+        this.title = dto.getTitle();
+        this.content = dto.getContent();
+        this.category = dto.getCategory();
+        this.startDate = dto.getStartDate();
+        this.endDate = dto.getEndDate();
     }
 }

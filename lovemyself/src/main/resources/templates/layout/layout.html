@@ -1,11 +1,18 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-
+<head>
     <meta charset="UTF-8">
     <title>LoveMySelf 🌙</title>
+
+    <!-- 📦 기본 스타일 -->
     <link rel="stylesheet" th:href="@{/css/style.css}">
 
+    <!-- ✅ 자식 템플릿에서 <style> 삽입할 수 있도록 -->
+    <th:block layout:fragment="style"></th:block>
+</head>
+
+<body>
 <header>
     <h1>LoveMySelf 🌙</h1>
     <nav class="nav-bar">
@@ -17,11 +24,22 @@
         </ul>
     </nav>
 </header>
+
 <main layout:fragment="content">
     <!-- 자식 템플릿이 이 영역을 채웁니다 -->
 </main>
+
 <footer>
     <p>© 2025 LoveMySelf</p>
 </footer>
 
+
+    <!-- Toast UI Editor v2.0.0 JS -->
+
+
+<!-- ✅ 자식 템플릿에서 JS 삽입 -->
+<th:block layout:fragment="script"></th:block>
+</body>
+
 </html>
+

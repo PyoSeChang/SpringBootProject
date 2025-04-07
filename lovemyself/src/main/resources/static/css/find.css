@@ -1,0 +1,50 @@
+@font-face {
+    font-family: 'Shilla_Culture';
+    src: url('/fonts/Shilla_Culture-Regular.woff2') format('woff2');
+}
+
+.toastui-editor-defaultUI {
+    background-color: #000000 !important;
+    background-image: url('https://www.transparenttextures.com/patterns/black-paper.png') !important;
+    background-size: auto;
+}
+
+.toastui-editor-contents p,
+.toastui-editor-contents div,
+.toastui-editor-contents span,
+.toastui-editor-contents li,
+.toastui-editor-contents pre,
+.toastui-editor-contents blockquote {
+    color: #fff;
+    font-family: 'Shilla_Culture', sans-serif !important;
+}
+
+.toastui-editor-md-container .CodeMirror,
+.toastui-editor-md-container .CodeMirror * {
+    font-family: 'Shilla_Culture', sans-serif !important;
+    color: #ffffff !important;
+    font-size: 16px !important;
+    background-color: transparent !important;
+}
+.toastui-editor-md-container .ProseMirror,
+.toastui-editor-md-container .ProseMirror * {
+    font-family: 'Shilla_Culture', sans-serif !important;
+    color: #ffffff !important;
+    font-size: 16px !important;
+    background-color: transparent !important;
+}
+
+/* 텍스트 입력 줄 (실제 줄 내용이 들어가는 곳) */
+.toastui-editor-md-container .CodeMirror-lines,
+.toastui-editor-md-container .CodeMirror-lines * {
+    font-family: 'Shilla_Culture', sans-serif !important;
+    color: #ffffff !important;
+}
+
+.toastui-editor-ww-container .ProseMirror,
+.toastui-editor-ww-container .ProseMirror * {
+    font-family: 'Shilla_Culture', sans-serif !important;
+    color: #ffffff !important;
+}
+
+
