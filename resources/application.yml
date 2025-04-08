@@ -1,17 +1,18 @@
 spring:
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML
+    encoding: UTF-8
+    cache: false
+
+# 학원
+
   datasource:
     url: jdbc:mysql://localhost:3306/lms
     username: PSC
     password: 1234
     driver-class-name: com.mysql.cj.jdbc.Driver
-
-  jpa:
-    hibernate:
-      ddl-auto: update  # DB 테이블 자동 생성 or 업데이트 (개발 시엔 update 추천)
-    show-sql: true       # 콘솔에 SQL 출력
-    properties:
-      hibernate:
-        format_sql: true # SQL 예쁘게 출력
 
 # 집
 
@@ -20,6 +21,14 @@ spring:
 #    username: root
 #    password: 1234
 #    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update  # DB 테이블 자동 생성 or 업데이트 (개발 시엔 update 추천)
+    show-sql: true       # 콘솔에 SQL 출력
+    properties:
+      hibernate:
+        format_sql: true # SQL 예쁘게 출력
 
 mybatis:
   type-aliases-package: com.psc.lovemyself.domain  # XML 매핑할 Entity 위치

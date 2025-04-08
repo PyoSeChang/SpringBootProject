@@ -69,7 +69,7 @@
             <!-- 1. View (nullable) -->
             <div>
                 <label for="view">관계 View (선택)</label>
-                <input type="text" id="view" name="connections[0].view" placeholder="이 관계의 의미나 맥락">
+                <input type="text" id="view" name="connections[0].viewName" placeholder="이 관계의 의미나 맥락">
             </div>
 
             <!-- 2. 연결 대상 객체 ID 및 Category -->
@@ -96,7 +96,7 @@
             <!-- 3. 연결 타입 입력 or 선택 -->
             <div>
                 <label for="connectionType">연결 타입</label>
-                <input type="text" id="connectionType" name="connections[0].connectionType" list="connectionTypeList" placeholder="입력 또는 선택">
+                <input type="text" id="connectionType" name="connections[0].connectionTypeName" list="connectionTypeList" placeholder="입력 또는 선택">
                 <datalist id="connectionTypeList">
                     <option value="유사">Similar</option>
                     <option value="원인">Cause</option>
@@ -122,16 +122,16 @@
                 </select>
             </div>
 
-            <!-- 5. is_directional (기본값 false) -->
+            <!-- 5. isDirectional (기본값 false) -->
             <div>
-                <input type="checkbox" id="isDirectional" name="connections[0].directional" value="true">
+                <input type="checkbox" id="isDirectional" name="connections[0].isDirectional" value="true">
                 <label for="isDirectional">방향성 있는 관계</label>
             </div>
 
             <!-- 6. 설명 -->
             <div>
                 <label for="description">설명</label>
-                <textarea id="description" name="connections[0].description" rows="2" placeholder="이 관계에 대한 설명"></textarea>
+                <textarea id="description" name="connections[0].viewDescription" rows="2" placeholder="이 관계에 대한 설명"></textarea>
             </div>
         </div>
 

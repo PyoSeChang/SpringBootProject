@@ -2,6 +2,7 @@ package com.psc.lovemyself.domain.findmyself.experience;
 
 import com.psc.lovemyself.domain.findmyself.enums.Category;
 import com.psc.lovemyself.dto.findmyself.CognitionDTO;
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import lombok.*;
 
@@ -11,7 +12,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @NoArgsConstructor
-
+@DiscriminatorValue("REVIEW")
 public class Review extends Experience {
 
     @Builder

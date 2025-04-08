@@ -1,5 +1,6 @@
 package com.psc.lovemyself.dto.findmyself;
 
+import com.psc.lovemyself.domain.findmyself.Cognition;
 import com.psc.lovemyself.domain.findmyself.Connection;
 import com.psc.lovemyself.domain.findmyself.enums.Category;
 import com.psc.lovemyself.domain.findmyself.enums.CognitionType;
@@ -8,12 +9,14 @@ import com.psc.lovemyself.domain.findmyself.idea.*;
 import com.psc.lovemyself.domain.findmyself.enums.CognitionType;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.time.LocalDate;
 import java.util.List;
 
 @Getter
 @Setter
+@ToString
 public class CognitionDTO {
     private String title;
     private String content;
@@ -21,59 +24,63 @@ public class CognitionDTO {
     private LocalDate startDate;
     private LocalDate endDate;
     private CognitionType cognitionType;
-    private List<Connection> connections;
+    private List<ConnectionDTO> connections;
 
-    public Experience toExperience() {
-        return switch (category) {
-            case REVIEW -> {
-                var review = new Review();
-                fillCommonFields(review);
-                yield review;
+    public Cognition toCognition() {
+        if (cognitionType == CognitionType.EXPERIENCE) {
+            switch (category) {
+                case REVIEW -> {
+                    Review review = new Review();
+                    fillCommonFields(review);
+                    return review;
+                }
+                case EVENT -> {
+                    Event event = new Event();
+                    fillCommonFields(event);
+                    return event;
+                }
+                case AWARENESS -> {
+                    Awareness awareness = new Awareness();
+                    fillCommonFields(awareness);
+                    return awareness;
+                }
+                case PROJECT -> {
+                    Project project = new Project();
+                    fillCommonFields(project);
+                    return project;
+                }
+                default -> throw new IllegalArgumentException("해당 category는 EXPERIENCE 타입에 해당하지 않습니다: " + category);
             }
-            case EVENT -> {
-                var event = new Event();
-                fillCommonFields(event);
-                yield event;
+        } else if (cognitionType == CognitionType.IDEA) {
+            switch (category) {
+                case INSPIRATION -> {
+                    Inspiration inspiration = new Inspiration();
+                    fillCommonFields(inspiration);
+                    return inspiration;
+                }
+                case INSIGHT -> {
+                    Insight insight = new Insight();
+                    fillCommonFields(insight);
+                    return insight;
+                }
+                case FRAMEWORK -> {
+                    Framework framework = new Framework();
+                    fillCommonFields(framework);
+                    return framework;
+                }
+                case STUDY -> {
+                    Study study = new Study();
+                    fillCommonFields(study);
+                    return study;
+                }
+                default -> throw new IllegalArgumentException("해당 category는 IDEA 타입에 해당하지 않습니다: " + category);
             }
-            case PROJECT -> {
-                var project = new Project();
-                fillCommonFields(project);
-                yield project;
-            }
-            case AWARENESS -> {
-                var awareness = new Awareness();
-                fillCommonFields(awareness);
-                yield awareness;
-            }
-            default -> throw new IllegalArgumentException("지원하지 않는 카테고리입니다: " + category);
-        };
+        } else {
+            throw new IllegalArgumentException("알 수 없는 CognitionType: " + cognitionType);
+        }
     }
 
-    public Idea toIdea() {
-        return switch (category) {
-            case INSPIRATION -> {
-                var inspiration = new Inspiration();
-                fillCommonFields(inspiration);
-                yield inspiration;
-            }
-            case INSIGHT -> {
-                var insight = new Insight();
-                fillCommonFields(insight);
-                yield insight;
-            }
-            case FRAMEWORK -> {
-                var framework = new Framework();
-                fillCommonFields(framework);
-                yield framework;
-            }
-            case STUDY -> {
-                var study = new Study();
-                fillCommonFields(study);
-                yield study;
-            }
-            default -> throw new IllegalArgumentException("지원하지 않는 카테고리입니다: " + category);
-        };
-    }
+
 
     private void fillCommonFields(Review review) {
         review.setTitle(title);
@@ -81,6 +88,7 @@ public class CognitionDTO {
         review.setStartDate(startDate);
         review.setEndDate(endDate);
         review.setCategory(Category.REVIEW);
+        review.setCognitionType(CognitionType.EXPERIENCE);
     }
 
     private void fillCommonFields(Event event) {
@@ -89,6 +97,7 @@ public class CognitionDTO {
         event.setStartDate(startDate);
         event.setEndDate(endDate);
         event.setCategory(Category.EVENT);
+        event.setCognitionType(CognitionType.EXPERIENCE);
     }
 
     private void fillCommonFields(Project project) {
@@ -97,6 +106,7 @@ public class CognitionDTO {
         project.setStartDate(startDate);
         project.setEndDate(endDate);
         project.setCategory(Category.PROJECT);
+        project.setCognitionType(CognitionType.EXPERIENCE);
     }
 
     private void fillCommonFields(Awareness awareness) {
@@ -105,6 +115,7 @@ public class CognitionDTO {
         awareness.setStartDate(startDate);
         awareness.setEndDate(endDate);
         awareness.setCategory(Category.AWARENESS);
+        awareness.setCognitionType(CognitionType.EXPERIENCE);
     }
 
     private void fillCommonFields(Inspiration inspiration) {
@@ -113,6 +124,7 @@ public class CognitionDTO {
         inspiration.setStartDate(startDate);
         inspiration.setEndDate(endDate);
         inspiration.setCategory(Category.INSPIRATION);
+        inspiration.setCognitionType(CognitionType.IDEA);
     }
 
     private void fillCommonFields(Insight insight) {
@@ -121,6 +133,7 @@ public class CognitionDTO {
         insight.setStartDate(startDate);
         insight.setEndDate(endDate);
         insight.setCategory(Category.INSIGHT);
+        insight.setCognitionType(CognitionType.IDEA);
     }
 
     private void fillCommonFields(Framework framework) {
@@ -129,6 +142,7 @@ public class CognitionDTO {
         framework.setStartDate(startDate);
         framework.setEndDate(endDate);
         framework.setCategory(Category.FRAMEWORK);
+        framework.setCognitionType(CognitionType.IDEA);
     }
 
     private void fillCommonFields(Study study) {
@@ -137,6 +151,7 @@ public class CognitionDTO {
         study.setStartDate(startDate);
         study.setEndDate(endDate);
         study.setCategory(Category.STUDY);
+        study.setCognitionType(CognitionType.IDEA);
     }
 
 
