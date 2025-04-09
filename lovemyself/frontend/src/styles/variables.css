@@ -1,0 +1,32 @@
+/* src/styles/variables.css */
+
+@font-face {
+    font-family: "Shilla_CultureB";
+    src: url("../../public/fonts/Shilla_CultureB-Regular.woff2") format("woff2");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "BookkMyungjo-Bd";
+    src: url("../../public/fonts/BookkMyungjo-Bd.woff2") format("woff2");
+    font-weight: bold;
+    font-style: normal;
+}
+
+/* 폰트 변수 */
+:root {
+    --font-handwriting: "Shilla_CultureB", sans-serif;
+    --font-ui: "BookkMyungjo-Bd", serif;
+
+    /* 색상 변수는 그대로 유지 */
+    --color-yellow: #f9f871;
+    --color-pink: #ff9cee;
+    --color-blue: #89cff0;
+    --color-green: #77dd77;
+    --color-red: #ff6961;
+    --color-orange: #ffb347;
+
+    --color-bg-black: #000000;
+    --color-bg-texture: url("https://www.transparenttextures.com/patterns/black-paper.png");
+}

@@ -1,36 +1,57 @@
-@font-face {
-    font-family: 'Shilla';
-    src: url('../fonts/Shilla_Culture-Regular.woff2') format('woff2');
-}
+@import "./variables.css";
 
-@font-face {
-    font-family: 'BookkMyungjo';
-    src: url('../fonts/BookkMyungjo-Bd.woff2') format('woff2');
-}
-
-body {
+/* 🔄 기본 스타일 초기화 */
+* {
     margin: 0;
-    background-color: #000000;
-    background-image: url("https://www.transparenttextures.com/patterns/black-paper.png");
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 🌐 전체 배경 및 기본 텍스트 스타일 */
+body {
+    background-color: var(--color-bg-black);
+    background-image: var(--color-bg-texture);
     background-repeat: repeat;
     color: white;
-    font-family: 'BookkMyungjo', serif;
+    font-family: var(--font-ui); /* 기본 UI 폰트 */
 }
 
-input, textarea, select {
-    font-family: 'Shilla', sans-serif;
+/* 🔗 링크 스타일 */
+a {
+    color: var(--color-yellow);
+    text-decoration: none;
+}
+
+/* 🔘 버튼 스타일 */
+button {
+    cursor: pointer;
+    font-family: var(--font-ui);
+    background: transparent;
+    border: 1px solid var(--color-yellow);
+    color: var(--color-yellow);
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    transition: background 0.2s;
+}
+
+button:hover {
+    background: var(--color-yellow);
+    color: black;
+}
+
+/* 🖋️ 사용자 입력 요소 공통 스타일 */
+input,
+textarea,
+select {
+    font-family: var(--font-handwriting);
     background-color: transparent;
     color: white;
-    border: 1px solid #666;
-    padding: 8px;
-    width: 100%;
+    border: 1px solid #ccc;
+    padding: 0.5rem;
+    border-radius: 4px;
 }
 
-button {
-    font-family: 'BookkMyungjo', serif;
-    background-color: #111;
-    color: #fff;
-    border: 1px solid #999;
-    padding: 8px 16px;
-    cursor: pointer;
+input::placeholder,
+textarea::placeholder {
+    color: #aaa;
 }
