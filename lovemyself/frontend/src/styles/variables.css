@@ -20,12 +20,12 @@
     --font-ui: "BookkMyungjo-Bd", serif;
 
     /* 색상 변수는 그대로 유지 */
-    --color-yellow: #f9f871;
-    --color-pink: #ff9cee;
-    --color-blue: #89cff0;
-    --color-green: #77dd77;
-    --color-red: #ff6961;
-    --color-orange: #ffb347;
+    --color-yellow: #ffe600;   /* 좀 더 선명한 형광 노랑 */
+    --color-pink: #ff69b4;     /* 밝은 핫핑크 느낌 */
+    --color-blue: #00bfff;     /* 시원한 스카이블루 */
+    --color-green: #32cd32;    /* 라임 느낌 나는 연녹색 */
+    --color-red: #ff4c4c;      /* 조금 더 강렬한 레드 */
+    --color-orange: #ffa500;   /* 진한 주황색 */
 
     --color-bg-black: #000000;
     --color-bg-texture: url("https://www.transparenttextures.com/patterns/black-paper.png");

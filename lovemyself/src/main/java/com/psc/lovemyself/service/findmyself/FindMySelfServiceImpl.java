@@ -37,21 +37,25 @@ public class FindMySelfServiceImpl implements FindMySelfService {
         // 2. 연결 박스 흔들어보기
         List<ConnectionDTO> connectionDTOs = cognitionDTO.getConnections();
         if (connectionDTOs != null && !connectionDTOs.isEmpty()) {
-            for (ConnectionDTO dto : connectionDTOs) {
-                // 2-1. 필요한 조립 재료 확보
-                ConnectionType type = connectionTypeRepository.findByConnectionType(dto.getConnectionTypeName())
-                        .orElseGet(() -> connectionTypeRepository.save(dto.toConnectionTypeEntity()));
-                ConnectionView view = connectionViewRepository.findByName(dto.getViewName())
-                        .orElseGet(() -> connectionViewRepository.save(dto.toViewEntity(cognition)));
+            Long toId = connectionDTOs.get(0).getToId();
+            if (toId != null) {
+                for (ConnectionDTO dto : connectionDTOs) {
+                    // 2-1. 필요한 조립 재료 확보
+                    ConnectionType type = connectionTypeRepository.findByConnectionType(dto.getConnectionTypeName())
+                            .orElseGet(() -> connectionTypeRepository.save(dto.toConnectionTypeEntity()));
+                    ConnectionView view = connectionViewRepository.findByName(dto.getViewName())
+                            .orElseGet(() -> connectionViewRepository.save(dto.toViewEntity(cognition)));
 
-                // 2-2. DTO한테 조립 맡기기
-                Connection connection = dto.toEntity(
-                        cognition.getId(), cognition.getCategory(), type, view
-                );
+                    // 2-2. DTO한테 조립 맡기기
+                    Connection connection = dto.toEntity(
+                            cognition.getId(), cognition.getCategory(), type, view
+                    );
 
-                // 2-3. 저장
-                connectionRepository.save(connection);
+                    // 2-3. 저장
+                    connectionRepository.save(connection);
+                }
             }
+
         }
     }
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 interface Props {
     label: string;
@@ -6,14 +6,26 @@ interface Props {
     onChange?: (value: string) => void;
 }
 
-// 오늘 날짜 구하는 함수
 const getToday = () => {
     const today = new Date();
-    return today.toISOString().slice(0, 10); // "YYYY-MM-DD" 형식
+    return today.toISOString().slice(0, 10);
 };
 
 export default function DateInput({ label, value, onChange }: Props) {
-    const displayValue = value ?? getToday(); // value가 없으면 오늘 날짜 사용
+    // 초기 상태를 부모의 value 또는 오늘 날짜로 설정
+    const [selectedDate, setSelectedDate] = useState(value || getToday());
+
+    // 부모의 value가 변경되면 내부 상태를 동기화함
+    useEffect(() => {
+        if (value) {
+            setSelectedDate(value);
+        }
+    }, [value]);
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setSelectedDate(e.target.value);
+        onChange?.(e.target.value);
+    };
 
     return (
         <div style={{ marginBottom: "1rem" }}>
@@ -28,8 +40,8 @@ export default function DateInput({ label, value, onChange }: Props) {
             </label>
             <input
                 type="date"
-                value={displayValue}
-                onChange={(e) => onChange?.(e.target.value)}
+                value={selectedDate}
+                onChange={handleChange}
                 style={{
                     width: "100%",
                     padding: "0.5rem",

@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { postCognition } from "./cognitionAPI";
 import LabeledInput from "../../components/LabeledInput";
 import CategorySelect from "../../components/CategorySelect";
 import DateInput from "../../components/DateInput";
 import ConnectionInputList, { ConnectionData } from "../connection/ConnectionInputList";
+import ToastEditor, { ToastEditorHandle } from "../../components/ToastEditor";
 
 function getCognitionTypeByCategory(category: string): "IDEA" | "EXPERIENCE" | null {
     const ideaSet = new Set(["INSPIRATION", "INSIGHT", "FRAMEWORK", "STUDY"]);
@@ -14,11 +15,13 @@ function getCognitionTypeByCategory(category: string): "IDEA" | "EXPERIENCE" | n
 }
 
 export default function CognitionForm() {
+    // ToastEditorHandle를 반환하는 ref로 타입을 변경합니다.
+    const editorRef = useRef<ToastEditorHandle | null>(null);
+
     const [title, setTitle] = useState("");
     const [category, setCategory] = useState("");
     const [startDate, setStartDate] = useState("");
     const [endDate, setEndDate] = useState("");
-    const [content, setContent] = useState(""); // ✨ content 텍스트 입력으로 대체
     const [connections, setConnections] = useState<ConnectionData[]>([
         {
             id: Date.now(),
@@ -37,6 +40,9 @@ export default function CognitionForm() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
+        // ToastEditorHandle에 정의된 getMarkdown 메서드를 직접 호출합니다.
+        const markdownContent = editorRef.current?.getMarkdown() ?? "";
+
         const cleanedConnections = connections.map((conn) => ({
             ...conn,
             usableCategory: conn.usableCategory === "" ? null : conn.usableCategory,
@@ -48,7 +54,7 @@ export default function CognitionForm() {
             cognitionType,
             startDate,
             endDate,
-            content,
+            content: markdownContent,
             connections: cleanedConnections,
         };
 
@@ -66,10 +72,8 @@ export default function CognitionForm() {
             <CategorySelect value={category} onChange={setCategory} />
             <DateInput label="시작일" value={startDate} onChange={setStartDate} />
             <DateInput label="종료일" value={endDate} onChange={setEndDate} />
-            <LabeledInput label="내용" value={content} onChange={(e) => setContent(e.target.value)} />
-
+            <ToastEditor ref={editorRef} initialValue="내용을 입력하세요..." />
             <ConnectionInputList connections={connections} setConnections={setConnections} />
-
             <button type="submit">저장</button>
         </form>
     );

@@ -1,0 +1,10 @@
+/* src/components/ToastEditor.css */
+
+/* 오직 ProseMirror 콘텐츠 내부에 폰트만 적용 */
+.toastui-editor-contents,
+.toastui-editor-contents * {
+    font-family: var(--font-handwriting) !important;
+}
+.ProseMirror {
+    font-family: var(--font-handwriting) !important;
+}
