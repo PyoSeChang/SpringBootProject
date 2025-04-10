@@ -1,6 +1,6 @@
 // src/components/ColorToolbar.tsx
-import { useCallback, useEffect } from "react";
-import { Editor } from "@toast-ui/react-editor";
+import React, { useCallback, useEffect } from "react";
+import { ToastEditorHandle } from "./ToastEditor";
 
 const colors = [
     { name: "Yellow", code: "#f1c40f" },
@@ -11,26 +11,25 @@ const colors = [
     { name: "Orange", code: "#e67e22" },
 ];
 
-type Props = {
-    editorRef: React.RefObject<Editor | null>;
+type ColorToolbarProps = {
+    editorRef: React.RefObject<ToastEditorHandle>;
 };
 
-export default function ColorToolbar({ editorRef }: Props) {
+const ColorToolbar: React.FC<ColorToolbarProps> = ({ editorRef }) => {
     const insertColorSpan = useCallback(
         (color: string) => {
-            const editor = editorRef.current?.getInstance();
-            if (!editor) return;
-
+            if (!editorRef.current) return;
+            // ToastEditorHandle의 insertText 메서드 호출
             const html = `<span style="color: ${color}"></span>`;
-            editor.insertText(html);
+            editorRef.current.insertText(html);
         },
         [editorRef]
     );
 
     useEffect(() => {
-        const handler = (e: KeyboardEvent) => {
+        const keyDownHandler = (e: KeyboardEvent) => {
             if (e.ctrlKey) {
-                const index = parseInt(e.key) - 1;
+                const index = parseInt(e.key, 10) - 1;
                 if (index >= 0 && index < colors.length) {
                     e.preventDefault();
                     insertColorSpan(colors[index].code);
@@ -38,21 +37,24 @@ export default function ColorToolbar({ editorRef }: Props) {
             }
         };
 
-        window.addEventListener("keydown", handler);
-        return () => window.removeEventListener("keydown", handler);
+        window.addEventListener("keydown", keyDownHandler);
+        return () => window.removeEventListener("keydown", keyDownHandler);
     }, [insertColorSpan]);
 
     return (
-        <div className="flex flex-col gap-1 p-2 bg-black/50 rounded-md border border-gray-700 mt-2">
-            {colors.map((c, i) => (
+        <div className="flex flex-row justify-center gap-2 p-2 bg-black/50 rounded-md border border-gray-700 mt-2">
+            {colors.map((color, i) => (
                 <button
-                    key={c.name}
+                    key={color.name}
                     className="w-8 h-8 rounded hover:scale-110 transition-transform"
-                    style={{ backgroundColor: c.code }}
-                    title={`${c.name} (Ctrl+${i + 1})`}
-                    onClick={() => insertColorSpan(c.code)}
+                    style={{ backgroundColor: color.code }}
+                    title={`${color.name} (Ctrl+${i + 1})`}
+                    onClick={() => insertColorSpan(color.code)}
                 />
             ))}
         </div>
+
     );
-}
+};
+
+export default ColorToolbar;

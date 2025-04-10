@@ -4,7 +4,9 @@
 .toastui-editor-contents,
 .toastui-editor-contents * {
     font-family: var(--font-handwriting) !important;
+    font-size: 1.75rem !important;
 }
 .ProseMirror {
     font-family: var(--font-handwriting) !important;
+    font-size: 1.75rem !important;
 }

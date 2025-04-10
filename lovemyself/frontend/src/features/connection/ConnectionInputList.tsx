@@ -1,5 +1,6 @@
 import React from "react";
 import ConnectionInput from "./ConnectionInput";
+import InlineContainer from "../../components/InlineContainer";
 
 export interface ConnectionData {
     id: number;
@@ -48,19 +49,22 @@ export default function ConnectionInputList({ connections, setConnections }: Pro
 
     return (
         <div>
-            <h3 style={{ fontFamily: "var(--font-ui)" }}>Connection</h3>
-            <ul style={{ listStyle: "none", padding: 0 }}>
+            <InlineContainer>
                 {connections.map((conn, idx) => (
-                    <li key={conn.id}>
+                    <div key={conn.id} className="w-[32%]">
+                        <div className="mb-2 font-ui text-sm text-gray-300">Connection #{idx + 1}</div>
                         <ConnectionInput
                             data={conn}
                             onChange={(updated) => handleChange(idx, updated)}
                             onDelete={() => handleDelete(idx)}
                         />
-                    </li>
+                    </div>
                 ))}
-            </ul>
-            <button type="button" onClick={handleAdd}>+ 연결 추가</button>
+                <button type="button" onClick={handleAdd} className="btn btn-outline btn-sm self-start">
+                    + 연결 추가
+                </button>
+            </InlineContainer>
         </div>
+
     );
 }

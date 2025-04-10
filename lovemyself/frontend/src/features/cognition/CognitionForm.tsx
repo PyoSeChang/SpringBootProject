@@ -3,6 +3,7 @@ import { postCognition } from "./cognitionAPI";
 import LabeledInput from "../../components/LabeledInput";
 import CategorySelect from "../../components/CategorySelect";
 import DateInput from "../../components/DateInput";
+import InlineContainer from "../../components/InlineContainer";
 import ConnectionInputList, { ConnectionData } from "../connection/ConnectionInputList";
 import ToastEditor, { ToastEditorHandle } from "../../components/ToastEditor";
 
@@ -20,8 +21,9 @@ export default function CognitionForm() {
 
     const [title, setTitle] = useState("");
     const [category, setCategory] = useState("");
-    const [startDate, setStartDate] = useState("");
-    const [endDate, setEndDate] = useState("");
+    const [startDate, setStartDate] = useState(() => getTodayString());
+    const [endDate, setEndDate] = useState(() => getTodayString());
+
     const [connections, setConnections] = useState<ConnectionData[]>([
         {
             id: Date.now(),
@@ -34,6 +36,10 @@ export default function CognitionForm() {
             typeDescription: "",
         },
     ]);
+    function getTodayString() {
+        return new Date().toISOString().split("T")[0]; // "2025-04-10"
+    }
+
 
     const cognitionType = getCognitionTypeByCategory(category);
 
@@ -68,13 +74,26 @@ export default function CognitionForm() {
 
     return (
         <form onSubmit={handleSubmit}>
-            <LabeledInput label="제목" value={title} onChange={(e) => setTitle(e.target.value)} />
-            <CategorySelect value={category} onChange={setCategory} />
-            <DateInput label="시작일" value={startDate} onChange={setStartDate} />
-            <DateInput label="종료일" value={endDate} onChange={setEndDate} />
-            <ToastEditor ref={editorRef} initialValue="내용을 입력하세요..." />
+            <InlineContainer>
+                <LabeledInput label="제목" value={title} className="w-[500px]" onChange={(e) => setTitle(e.target.value)} />
+                <CategorySelect value={category} onChange={setCategory} />
+            </InlineContainer>
+
+            <InlineContainer className="w-3/4 pl-4">
+                <DateInput label="시작일" value={startDate} onChange={setStartDate} />
+                <DateInput label="종료일" value={endDate} onChange={setEndDate} />
+            </InlineContainer>
+            <div className="w-[80%] mx-auto mt-4 px-4">
+                <ToastEditor ref={editorRef} initialValue="내용을 입력하세요..." />
+            </div>
+
             <ConnectionInputList connections={connections} setConnections={setConnections} />
-            <button type="submit">저장</button>
+
+            <div className="w-full mt-6 flex justify-center">
+                <button type="submit" className="btn btn-outline btn-wide">
+                    저장
+                </button>
+            </div>
         </form>
     );
 }

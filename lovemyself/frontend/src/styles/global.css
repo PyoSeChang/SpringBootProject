@@ -1,31 +1,34 @@
 @import "./variables.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-/* 🔄 기본 스타일 초기화 */
+/* 🌱 Reset: 기본 스타일 초기화 */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* 🌐 전체 배경 및 기본 텍스트 스타일 */
+/* 🌍 Base Styles: 전체 배경 및 기본 텍스트 */
 body {
     background-color: var(--color-bg-black);
     background-image: var(--color-bg-texture);
     background-repeat: repeat;
     color: white;
-    font-family: var(--font-ui); /* 기본 UI 폰트 */
+    font-family: var(--font-ui), serif;
 }
 
-/* 🔗 링크 스타일 */
+/* 🔗 Link Styles */
 a {
     color: var(--color-yellow);
     text-decoration: none;
 }
 
-/* 🔘 버튼 스타일 */
+/* 🔘 Button Styles */
 button {
     cursor: pointer;
-    font-family: var(--font-ui);
+    font-family: var(--font-ui), serif;
     background: transparent;
     border: 1px solid var(--color-yellow);
     color: var(--color-yellow);
@@ -39,11 +42,11 @@ button:hover {
     color: black;
 }
 
-/* 🖋️ 사용자 입력 요소 공통 스타일 */
+/* 🖊️ Input Elements (공통 입력 요소 스타일) */
 input,
 textarea,
 select {
-    font-family: var(--font-handwriting);
+    font-family: var(--font-handwriting), serif;
     background-color: transparent;
     color: white;
     border: 1px solid #ccc;
@@ -54,4 +57,17 @@ select {
 input::placeholder,
 textarea::placeholder {
     color: #aaa;
+}
+
+/* 🎨 Typography Utilities */
+.font-ui {
+    font-family: var(--font-ui), serif;
+    font-size: 1.5rem !important; /* 36px */
+    font-weight: normal;
+}
+
+.font-user {
+    font-family: var(--font-handwriting), sans-serif;
+    font-size: 1.75rem; /* 28px */
+    font-weight: normal;
 }

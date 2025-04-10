@@ -1,4 +1,6 @@
 import React from "react";
+import Label from "./ui/Label";
+import Input from "./ui/Input";
 
 interface Props {
     label: string;
@@ -6,6 +8,7 @@ interface Props {
     value?: string;
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
     placeholder?: string;
+    className?: string;
 }
 
 export default function LabeledInput({
@@ -14,34 +17,20 @@ export default function LabeledInput({
                                          value,
                                          onChange,
                                          placeholder,
+                                         className,
                                      }: Props) {
     return (
-        <div style={{ marginBottom: "1rem" }}>
-            <label
-                style={{
-                    display: "block",
-                    fontWeight: "bold",
-                    marginBottom: "0.5rem",
-                    fontFamily: "var(--font-ui)", // ✅ 시스템 폰트
-                }}
-            >
-                {label}
-            </label>
-            <input
+        <div className="mb-4">
+            <Label htmlFor={name}>{label}</Label>
+            <Input
                 type="text"
+                id={name}
                 name={name}
                 value={value}
                 onChange={onChange}
                 placeholder={placeholder}
-                style={{
-                    width: "100%",
-                    padding: "0.5rem",
-                    border: "1px solid #ccc",
-                    borderRadius: "4px",
-                    fontFamily: "var(--font-handwriting)", // ✅ 사용자 입력용 폰트
-                }}
+                className={`w-full px-2 py-2 border border-gray-400 rounded font-handwriting bg-black text-white ${className || ""}`}
             />
         </div>
-
     );
 }

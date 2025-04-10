@@ -14,6 +14,7 @@ export interface ToastEditorHandle {
     getMarkdown: () => string;
     getHTML: () => string;
     reset: () => void;
+    insertText: (text: string) => void;
 }
 
 export interface ToastEditorProps {
@@ -24,22 +25,26 @@ export interface ToastEditorProps {
 
 const ToastEditor = forwardRef<ToastEditorHandle, ToastEditorProps>(
     ({ initialValue = "", onChange, dark = true }, ref) => {
-        // 내부 Editor 인스턴스를 저장할 ref (실제 에디터 인스턴스)
+        // 내부 Editor 인스턴스를 저장할 ref
         const instanceRef = useRef<any>(null);
 
-        // 콜백 ref: Editor 컴포넌트가 마운트되면 getInstance()를 호출해 실제 에디터 인스턴스를 instanceRef에 저장합니다.
+        // Editor 컴포넌트가 마운트되면, getInstance()를 호출해 실제 인스턴스를 저장
         const handleEditorRef = (editor: Editor | null) => {
             if (editor) {
                 instanceRef.current = editor.getInstance();
             }
         };
 
-        // 부모에 노출할 메서드 설정 (이제 instanceRef.current는 에디터 인스턴스이므로 직접 메서드를 호출할 수 있음)
+        // 부모에 노출할 메서드 설정
         useImperativeHandle(ref, () => ({
             getMarkdown: () => instanceRef.current?.getMarkdown() || "",
             getHTML: () => instanceRef.current?.getHTML() || "",
             reset: () => {
                 instanceRef.current?.reset();
+            },
+            // 새로 추가: 내부 에디터의 insertText API 호출 (Toast UI Editor 인스턴스에서 제공하는 메서드)
+            insertText: (text: string) => {
+                instanceRef.current?.insertText(text);
             },
         }));
 
@@ -51,18 +56,20 @@ const ToastEditor = forwardRef<ToastEditorHandle, ToastEditorProps>(
 
         return (
             <>
+                <ColorToolbar editorRef={instanceRef} />
+                <br/>
                 <Editor
                     ref={handleEditorRef}
                     initialValue={initialValue}
                     previewStyle="vertical"
-                    height="400px"
+                    height="920px"
                     theme={dark ? "dark" : "light"}
                     usageStatistics={false}
                     plugins={[[codeSyntaxHighlight, { highlighter: Prism }]]}
                     onChange={handleChange}
                 />
-                {/* ColorToolbar가 에디터 인스턴스를 필요로 한다면 instanceRef를 전달 */}
-                <ColorToolbar editorRef={instanceRef} />
+                {/* ColorToolbar에 에디터 핸들을 전달 */}
+
             </>
         );
     }
