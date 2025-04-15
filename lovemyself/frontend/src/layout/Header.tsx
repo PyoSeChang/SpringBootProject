@@ -1,8 +1,11 @@
 // layout/Header.tsx
+import Atag from "../components/ui/Atag";
+
 export default function Header() {
     return (
-        <header className="w-full px-4 py-2 border-b border-gray-700 font-ui text-white">
-            <h1 className="text-xl">LoveMySelf</h1>
+        <header className="w-full px-4 py-6 font-ui_design_2 text-white text-center">
+            <Atag href={"/main"}><h1 className="text-7xl">Love Myself</h1></Atag>
         </header>
+
     );
 }

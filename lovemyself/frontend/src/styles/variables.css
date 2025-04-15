@@ -26,11 +26,23 @@
     font-weight: normal;
     font-style: normal;
 }
+@font-face {
+    font-family: 'Parisienne';
+    font-style: normal;
+    font-weight: 400;
+    src: url("../../public/fonts/Parisienne.woff2") format('woff2');
+}
 
+@font-face {
+    font-family: 'Tangerine';
+    font-style: normal;
+    font-weight: 400;
+    src: url("../../public/fonts/Tangerine.woff2") format('woff2');
+}
 
 /* 폰트 변수 */
 :root {
-    --font-handwriting: "kdg_Medium", sans-serif;
+    --font-handwriting: "MapoFlowerIsland", sans-serif;
 
     --font-ui: "MapoFlowerIsland", serif;
 

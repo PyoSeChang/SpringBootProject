@@ -18,7 +18,7 @@ const categories = [
 
 export default function CategorySelect({ value, onChange }: Props) {
     return (
-        <div className="mb-4">
+        <div className="mb-4 font-user_3">
             <Label htmlFor="category">카테고리</Label>
             <select
                 id="category"

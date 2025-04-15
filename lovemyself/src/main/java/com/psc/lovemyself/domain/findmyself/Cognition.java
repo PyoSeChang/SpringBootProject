@@ -59,6 +59,8 @@ public abstract class Cognition {
     @Column(nullable = false, length = 30)
     private CognitionType cognitionType;
 
+    private Long location;
+
     public Cognition(CognitionDTO dto) {
         this.title = dto.getTitle();
         this.content = dto.getContent();

@@ -16,58 +16,5 @@ body {
     background-image: var(--color-bg-texture);
     background-repeat: repeat;
     color: white;
-    font-family: var(--font-ui), serif;
 }
 
-/* 🔗 Link Styles */
-a {
-    color: var(--color-yellow);
-    text-decoration: none;
-}
-
-/* 🔘 Button Styles */
-button {
-    cursor: pointer;
-    font-family: var(--font-ui), serif;
-    background: transparent;
-    border: 1px solid var(--color-yellow);
-    color: var(--color-yellow);
-    padding: 0.5rem 1rem;
-    border-radius: 6px;
-    transition: background 0.2s;
-}
-
-button:hover {
-    background: var(--color-yellow);
-    color: black;
-}
-
-/* 🖊️ Input Elements (공통 입력 요소 스타일) */
-input,
-textarea,
-select {
-    font-family: var(--font-handwriting), serif;
-    background-color: transparent;
-    color: white;
-    border: 1px solid #ccc;
-    padding: 0.5rem;
-    border-radius: 4px;
-}
-
-input::placeholder,
-textarea::placeholder {
-    color: #aaa;
-}
-
-/* 🎨 Typography Utilities */
-.font-ui {
-    font-family: var(--font-ui), serif;
-    font-size: 1.5rem !important; /* 36px */
-    font-weight: normal;
-}
-
-.font-user {
-    font-family: var(--font-handwriting), sans-serif;
-    font-size: 1.75rem; /* 28px */
-    font-weight: normal;
-}
