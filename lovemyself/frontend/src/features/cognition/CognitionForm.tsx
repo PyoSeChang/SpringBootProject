@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { postCognition } from "./cognitionAPI";
+import { postCognition } from "../../api/cognitionAPI";
 import LabeledInput from "../../components/LabeledInput";
 import CategorySelect from "../../components/CategorySelect";
 import DateInput from "../../components/DateInput";

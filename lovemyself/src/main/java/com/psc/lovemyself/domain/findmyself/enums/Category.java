@@ -8,5 +8,6 @@ public enum Category {
     INSPIRATION,
     INSIGHT,
     FRAMEWORK,
-    STUDY
+    STUDY,
+    MODEL
 }

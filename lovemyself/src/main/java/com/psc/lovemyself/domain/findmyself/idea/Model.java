@@ -1,4 +1,4 @@
-package com.psc.lovemyself.domain.findmyself;
+package com.psc.lovemyself.domain.findmyself.idea;
 
 import com.psc.lovemyself.dto.findmyself.CognitionDTO;
 import jakarta.persistence.DiscriminatorValue;
@@ -12,7 +12,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @DiscriminatorValue("Model")
-public class Model extends Cognition {
+public class Model extends Idea {
     public Model(CognitionDTO dto) {
         super(dto);
     }

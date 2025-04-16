@@ -5,6 +5,7 @@ import Layout from "./Layout";
 import FindMySelfPage from "./pages/FindMySelfPage";
 import DreamMySelfPage from "./pages/DreamMySelf";
 import ReflectMySelfPage from "./pages/ReflectMySelf";
+import FindView from "./pages/FindView";
 // import CognitionForm from "./features/cognition/CognitionForm"; // 기존에 사용하던 컴포넌트 예시
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
                   <Route path="/find" element={<FindMySelfPage />} />
                   <Route path="/dream" element={<DreamMySelfPage />} />
                   <Route path="/reflect" element={<ReflectMySelfPage />} />
+                  <Route path="/find/view" element={<FindView />} />
               </Routes>
           </Layout>
       </Router>

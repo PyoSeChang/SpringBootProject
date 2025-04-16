@@ -73,6 +73,11 @@ public class CognitionDTO {
                     fillCommonFields(study);
                     return study;
                 }
+                case MODEL -> {
+                    Model model = new Model();
+                    fillCommonFields(model);
+                    return model;
+                }
                 default -> throw new IllegalArgumentException("해당 category는 IDEA 타입에 해당하지 않습니다: " + category);
             }
         } else {
@@ -152,6 +157,15 @@ public class CognitionDTO {
         study.setEndDate(endDate);
         study.setCategory(Category.STUDY);
         study.setCognitionType(CognitionType.IDEA);
+    }
+
+    private void fillCommonFields(Model model) {
+        model.setTitle(title);
+        model.setContent(content);
+        model.setStartDate(startDate);
+        model.setEndDate(endDate);
+        model.setCognitionType(CognitionType.IDEA);
+        model.setCategory(Category.MODEL);
     }
 
 
