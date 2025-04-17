@@ -8,9 +8,10 @@ import java.util.List;
 @Getter
 @Setter
 public class CreateDirectoryDTO {
-    private Long tempId;
+    private Integer tempId;
     private String name;
-    private Long parentId;
+    private Integer parentId;
     private Double priority;
+    private int depth;
     private List<String> categories;
 }
